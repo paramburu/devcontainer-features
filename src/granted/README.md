@@ -1,60 +1,27 @@
-# Granted (Common Fate)
 
-Installs the Common Fate "granted" CLI via the official APT repository, with optional shell completions and config file placement.
+# Granted (Common Fate) (granted)
+
+Installs the 'granted' CLI from Common Fate APT repository, optionally sets up shell completions and copies a config file.
+
+## Example Usage
+
+```json
+"features": {
+    "ghcr.io/paramburu/devcontainer-features/granted:1": {}
+}
+```
 
 ## Options
 
-- completionShell: Shell to generate completions for. One of `bash`, `zsh`, `fish`. Default: `zsh`.
-- configSource: Source path of a granted config file to copy into the container. Default: `.devcontainer/granted_config`.
-- configTargetPath: Absolute path to write the config file to. Default: `${_REMOTE_USER_HOME}/.granted/config`.
-- hostAwsMountPath: Directory where the host `~/.aws` is mounted inside the container. Default: `/opt/host-aws`.
+| Options Id | Description | Type | Default Value |
+|-----|-----|-----|-----|
+| completionShell | Shell to install completions for. | string | zsh |
+| configSource | Path to a granted config file to copy from (inside the workspace/image). Leave as a non-existent path to skip copy. | string | .devcontainer/granted_config |
+| configTargetPath | Absolute path where the granted config file will be placed inside the container. | string | ${_REMOTE_USER_HOME}/.granted/config |
+| hostAwsMountPath | If set and exists, a directory where host ~/.aws is mounted. The installer will symlink ${_REMOTE_USER_HOME}/.aws to this path if ~/.aws does not already exist. | string | /opt/host-aws |
 
-## Example usage
 
-```jsonc
-{
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {
-    "granted": {
-      "completionShell": "zsh",
-      "configSource": ".devcontainer/granted_config",
-      "configTargetPath": "/home/vscode/.granted/config"
-    }
-  }
-}
-```
-
-This feature adds the Common Fate APT repository and installs the `granted` package. If `configSource` exists, it will be copied to `configTargetPath`. Shell completions are installed system-wide for the selected shell.
-
-```bash
-# Example manual checks inside container
-which granted
-granted --version
-```
 
 ---
 
-Based on: https://apt.releases.commonfate.io/
-
-## Mount host AWS config (recommended)
-
-To let Granted use your host AWS config and credentials, bind-mount your host `~/.aws` into the container at a stable path, then the feature will symlink it to the effective remote user’s home (`${_REMOTE_USER_HOME}/.aws`).
-
-Add this to your `devcontainer.json`:
-
-```jsonc
-{
-  // ...
-  "mounts": [
-    "type=bind,source=${localEnv:HOME}/.aws,target=/opt/host-aws"
-  ],
-  "features": {
-    "granted": {
-      // optional: change if you mounted to a different path
-      "hostAwsMountPath": "/opt/host-aws"
-    }
-  }
-}
-```
-
-Why this pattern? The dev container mount target is evaluated before the feature runs and doesn’t have context for `${_REMOTE_USER_HOME}`. By mounting to a fixed location (default `/opt/host-aws`), the feature’s installer safely links it to `${_REMOTE_USER_HOME}/.aws` for whatever user your container ultimately uses.
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/paramburu/devcontainer-features/blob/main/src/granted/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
