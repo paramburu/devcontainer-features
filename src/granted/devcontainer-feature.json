@@ -20,6 +20,11 @@
             "type": "string",
             "default": "${_REMOTE_USER_HOME}/.granted/config",
             "description": "Absolute path where the granted config file will be placed inside the container."
+        },
+        "hostAwsMountPath": {
+            "type": "string",
+            "default": "/opt/host-aws",
+            "description": "If set and exists, a directory where host ~/.aws is mounted. The installer will symlink ${_REMOTE_USER_HOME}/.aws to this path if ~/.aws does not already exist."
         }
     },
     "installsAfter": [
