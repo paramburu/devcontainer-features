@@ -1,36 +1,26 @@
-# Granted (Common Fate)
 
-Installs the Common Fate "granted" CLI via the official APT repository, with optional shell completions and config file placement.
+# Granted (Common Fate) (granted)
 
-## Options
+Installs the 'granted' CLI from Common Fate APT repository, optionally sets up shell completions and copies a config file.
 
-- completionShell: Shell to generate completions for. One of `bash`, `zsh`, `fish`. Default: `zsh`.
-- configSource: Source path of a granted config file to copy into the container. Default: `.devcontainer/granted_config`.
-- configTargetPath: Absolute path to write the config file to. Default: `${_REMOTE_USER_HOME}/.granted/config`.
+## Example Usage
 
-## Example usage
-
-```jsonc
-{
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {
-    "granted": {
-      "completionShell": "zsh",
-      "configSource": ".devcontainer/granted_config",
-      "configTargetPath": "/home/vscode/.granted/config"
-    }
-  }
+```json
+"features": {
+    "ghcr.io/paramburu/devcontainer-features/granted:1": {}
 }
 ```
 
-This feature adds the Common Fate APT repository and installs the `granted` package. If `configSource` exists, it will be copied to `configTargetPath`. Shell completions are installed system-wide for the selected shell.
+## Options
 
-```bash
-# Example manual checks inside container
-which granted
-granted --version
-```
+| Options Id | Description | Type | Default Value |
+|-----|-----|-----|-----|
+| completionShell | Shell to install completions for. | string | zsh |
+| configSource | Path to a granted config file to copy from (inside the workspace/image). Leave as a non-existent path to skip copy. | string | .devcontainer/granted_config |
+| configTargetPath | Absolute path where the granted config file will be placed inside the container. | string | ${_REMOTE_USER_HOME}/.granted/config |
+
+
 
 ---
 
-Based on: https://apt.releases.commonfate.io/
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/paramburu/devcontainer-features/blob/main/src/granted/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
