@@ -1,0 +1,28 @@
+{
+    "name": "Granted (Common Fate)",
+    "id": "granted",
+    "version": "1.0.0",
+    "description": "Installs the 'granted' CLI from Common Fate APT repository, optionally sets up shell completions and copies a config file.",
+    "documentationURL": "https://granted.dev",
+    "options": {
+        "completionShell": {
+            "type": "string",
+            "enum": ["bash", "zsh", "fish"],
+            "default": "zsh",
+            "description": "Shell to install completions for."
+        },
+        "configSource": {
+            "type": "string",
+            "default": ".devcontainer/granted_config",
+            "description": "Path to a granted config file to copy from (inside the workspace/image). Leave as a non-existent path to skip copy."
+        },
+        "configTargetPath": {
+            "type": "string",
+            "default": "${_REMOTE_USER_HOME}/.granted/config",
+            "description": "Absolute path where the granted config file will be placed inside the container."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
