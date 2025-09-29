@@ -15,11 +15,9 @@ log "Activating feature 'granted'"
 # completionShell -> COMPLETIONSHELL (fallback COMPLETION_SHELL),
 # configSource -> CONFIGSOURCE (fallback CONFIG_SOURCE),
 # configTargetPath -> CONFIGTARGETPATH (fallback CONFIG_TARGET_PATH)
-# hostAwsMountPath -> HOSTAWSMOUNTPATH (fallback HOST_AWS_MOUNT_PATH)
 COMPLETION_SHELL=${COMPLETIONSHELL:-${COMPLETION_SHELL:-}}
 CONFIG_SOURCE=${CONFIGSOURCE:-${CONFIG_SOURCE:-}}
 CONFIG_TARGET_PATH=${CONFIGTARGETPATH:-${CONFIG_TARGET_PATH:-}}
-HOST_AWS_MOUNT_PATH=${HOSTAWSMOUNTPATH:-${HOST_AWS_MOUNT_PATH:-}}
 
 # Resolve remote user and home provided by features runtime
 EFFECTIVE_USER=${_REMOTE_USER:-root}
@@ -30,10 +28,6 @@ if [ -n "$CONFIG_TARGET_PATH" ]; then
     CONFIG_TARGET_PATH=$(echo "$CONFIG_TARGET_PATH" | sed "s|\${_REMOTE_USER_HOME}|${EFFECTIVE_HOME}|g")
 fi
 
-# Resolve HOST_AWS_MOUNT_PATH if it includes ${_REMOTE_USER_HOME}
-if [ -n "$HOST_AWS_MOUNT_PATH" ]; then
-    HOST_AWS_MOUNT_PATH=$(echo "$HOST_AWS_MOUNT_PATH" | sed "s|\${_REMOTE_USER_HOME}|${EFFECTIVE_HOME}|g")
-fi
 
 log "Environment snapshot:"
 log "  _REMOTE_USER=${_REMOTE_USER}"
@@ -43,7 +37,6 @@ log "  EFFECTIVE_HOME=${EFFECTIVE_HOME}"
 log "  COMPLETION_SHELL=${COMPLETION_SHELL}"
 log "  CONFIG_SOURCE=${CONFIG_SOURCE}"
 log "  CONFIG_TARGET_PATH=${CONFIG_TARGET_PATH}"
-log "  HOST_AWS_MOUNT_PATH=${HOST_AWS_MOUNT_PATH}"
 
 # Ensure prerequisites
 export DEBIAN_FRONTEND=noninteractive
@@ -84,17 +77,6 @@ else
     log "No config copied (source missing or not specified)"
 fi
 
-# If a host AWS mount path exists, symlink it to the user's ~/.aws if not present
-if [ -n "$HOST_AWS_MOUNT_PATH" ] && [ -d "$HOST_AWS_MOUNT_PATH" ]; then
-    log "Setting up ~/.aws symlink to host mount: $HOST_AWS_MOUNT_PATH"
-    USER_AWS_DIR="${EFFECTIVE_HOME}/.aws"
-    if [ ! -e "$USER_AWS_DIR" ]; then
-        ln -s "$HOST_AWS_MOUNT_PATH" "$USER_AWS_DIR"
-        chown -h "$EFFECTIVE_USER":"$EFFECTIVE_USER" "$USER_AWS_DIR" || true
-    else
-        log "~/.aws already exists, skipping symlink"
-    fi
-fi
 
 # Install shell completion using Granted's built-in installer as the effective user
 if [ -n "$COMPLETION_SHELL" ]; then
@@ -115,7 +97,7 @@ fi
 
 # Basic smoke test
 if command -v granted >/dev/null 2>&1; then
-    log "granted version: $(granted --version || true)"
+    log "$(granted --version || true)"
 else
     log "Warning: granted not found on PATH after installation"
 fi

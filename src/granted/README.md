@@ -18,7 +18,7 @@ Installs the 'granted' CLI from Common Fate APT repository, optionally sets up s
 | completionShell | Shell to install completions for. | string | zsh |
 | configSource | Path to a granted config file to copy from (inside the workspace/image). Leave as a non-existent path to skip copy. | string | .devcontainer/granted_config |
 | configTargetPath | Absolute path where the granted config file will be placed inside the container. | string | ${_REMOTE_USER_HOME}/.granted/config |
-| hostAwsMountPath | If set and exists, a directory where host ~/.aws is mounted. The installer will symlink ${_REMOTE_USER_HOME}/.aws to this path if ~/.aws does not already exist. | string | /opt/host-aws |
+
 
 
 

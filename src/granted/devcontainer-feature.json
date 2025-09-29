@@ -4,6 +4,13 @@
     "version": "1.0.0",
     "description": "Installs the 'granted' CLI from Common Fate APT repository, optionally sets up shell completions and copies a config file.",
     "documentationURL": "https://granted.dev",
+    "mounts": [
+        {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.aws",
+            "target": "${_REMOTE_USER_HOME}/.aws"
+        }
+    ],
     "options": {
         "completionShell": {
             "type": "string",
@@ -13,18 +20,13 @@
         },
         "configSource": {
             "type": "string",
-            "default": ".devcontainer/granted_config",
+            "default": "${_CONTAINER_WORKSPACE_FOLDER}/.devcontainer/granted_config",
             "description": "Path to a granted config file to copy from (inside the workspace/image). Leave as a non-existent path to skip copy."
         },
         "configTargetPath": {
             "type": "string",
             "default": "${_REMOTE_USER_HOME}/.granted/config",
             "description": "Absolute path where the granted config file will be placed inside the container."
-        },
-        "hostAwsMountPath": {
-            "type": "string",
-            "default": "/opt/host-aws",
-            "description": "If set and exists, a directory where host ~/.aws is mounted. The installer will symlink ${_REMOTE_USER_HOME}/.aws to this path if ~/.aws does not already exist."
         }
     },
     "installsAfter": [
