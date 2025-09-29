@@ -19,8 +19,6 @@ Installs the 'granted' CLI from Common Fate APT repository, optionally sets up s
 | configSource | Path to a granted config file to copy from (inside the workspace/image). Leave as a non-existent path to skip copy. | string | ${_CONTAINER_WORKSPACE_FOLDER}/.devcontainer/granted_config |
 | configTargetPath | Absolute path where the granted config file will be placed inside the container. | string | ${_REMOTE_USER_HOME}/.granted/config |
 
-
-
 ---
 
 _Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/paramburu/devcontainer-features/blob/main/src/granted/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
