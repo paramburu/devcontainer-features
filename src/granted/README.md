@@ -16,9 +16,6 @@ Installs the 'granted' CLI from Common Fate APT repository, optionally sets up s
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | completionShell | Shell to install completions for. | string | zsh |
-| configSource | Path to a granted config file to copy from (inside the workspace/image). Leave as a non-existent path to skip copy. | string | .devcontainer/granted_config |
-| configTargetPath | Absolute path where the granted config file will be placed inside the container. | string | ${_REMOTE_USER_HOME}/.granted/config |
-
 
 
 
