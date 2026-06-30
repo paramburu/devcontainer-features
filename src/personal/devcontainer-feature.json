@@ -1,0 +1,61 @@
+{
+    "name": "Personal",
+    "id": "personal",
+    "version": "1.0.0",
+    "description": "Installs my personal devcontainer configuration",
+    "mounts": [
+        {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.codex",
+            "target": "/opt/host-home/.codex"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.claude",
+            "target": "/opt/host-home/.claude"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.copilot",
+            "target": "/opt/host-home/.copilot"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.agents",
+            "target": "/opt/host-home/.agents"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.viminfo",
+            "target": "/opt/host-home/.viminfo"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.npm",
+            "target": "/opt/host-home/.npm"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.npmrc",
+            "target": "/opt/host-home/.npmrc"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.vim",
+            "target": "/opt/host-home/.vim"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.vimrc",
+            "target": "/opt/host-home/.vimrc"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.ohmyzsh",
+            "target": "/opt/host-home/.ohmyzsh"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.zprofile",
+            "target": "/opt/host-home/.zprofile"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.zshenv",
+            "target": "/opt/host-home/.zshenv"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.zshrc",
+            "target": "/opt/host-home/.zshrc"
+        }
+    ]
+}
