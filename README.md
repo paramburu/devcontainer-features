@@ -8,6 +8,25 @@
 
 This repository contains a _collection_ of two Features - `hello` and `color`. These Features serve as simple feature implementations.  Each sub-section below shows a sample `devcontainer.json` alongside example usage of the Feature.
 
+## Current Features in This Repository
+
+The active features currently maintained in this repository are:
+
+- `granted`: Installs the Common Fate `granted` CLI.
+- `personal`: Mounts selected host dotfiles to `/opt/host-home` and links them
+    into the devcontainer user's home.
+
+Example usage:
+
+```jsonc
+{
+    "features": {
+        "ghcr.io/paramburu/devcontainer-features/granted:1": {},
+        "ghcr.io/paramburu/devcontainer-features/personal:1": {}
+    }
+}
+```
+
 ### `hello`
 
 Running `hello` inside the built container will print the greeting provided to it via its `greeting` option.

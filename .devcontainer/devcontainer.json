@@ -18,8 +18,9 @@
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+        "ghcr.io/devcontainers/features/docker-in-docker:4": {}
     },
     "remoteUser": "node",
+    "postCreateCommand": "PERSONAL_FEATURE_POST_CREATE=1 sh /workspaces/devcontainer-features/src/personal/install.sh",
     "updateContentCommand": "npm install -g @devcontainers/cli"
 }
