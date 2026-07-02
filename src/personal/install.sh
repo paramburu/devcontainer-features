@@ -26,7 +26,7 @@ fi
 mkdir -p "$EFFECTIVE_HOME"
 
 # Explicit list of dotfiles/directories to symlink from /opt/host-home
-DOTFILES=".codex .claude .copilot .agents .viminfo .npm .npmrc .vim .vimrc .oh-my-zsh .zprofile .zshenv .zshrc"
+DOTFILES=".codex .claude .copilot .agents .viminfo .npm .npmrc .vim .vimrc .oh-my-zsh .zprofile .zshenv .zshrc .dotfiles"
 
 MOUNT_BASE="/opt/host-home"
 

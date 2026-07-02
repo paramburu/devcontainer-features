@@ -1,7 +1,7 @@
 {
     "name": "Personal",
     "id": "personal",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Installs my personal devcontainer configuration",
     "mounts": [
         {
@@ -56,6 +56,10 @@
             "type": "bind",
             "source": "${localEnv:HOME}/.zshrc",
             "target": "/opt/host-home/.zshrc"
+        }, {
+            "type": "bind",
+            "source": "${localEnv:HOME}/.dotfiles",
+            "target": "/opt/host-home/.dotfiles"
         }
     ]
 }
